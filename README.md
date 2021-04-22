@@ -32,7 +32,7 @@ GitHub Pages deployment is simple with the following GitHub Actions workflow:
   - name: Build GitHub stats pages
     uses: astrochun/github-stats-pages@latest
     with:
-      username: ${{ github.actor }}
+      username: ${{ github.repository_owner }}
       token: ${{ secrets.GH_TOKEN }}
   - name: Upload data to main branch
     uses: EndBug/add-and-commit@v7.0.0
@@ -74,7 +74,7 @@ specify a comma-separated list (_no spaces between commas_) for `include-repos` 
   - name: Build GitHub stats pages
     uses: astrochun/github-stats-pages@latest
     with:
-      username: ${{ github.actor }}
+      username: ${{ github.repository_owner }}
       token: ${{ secrets.GH_TOKEN }}
       include-repos: "github-stats-pages"
 ```
@@ -86,7 +86,7 @@ use the `exclude-repos` argument with a comma-separated list (_no spaces between
   - name: Build GitHub stats pages
     uses: astrochun/github-stats-pages@latest
     with:
-      username: ${{ github.actor }}
+      username: ${{ github.repository_owner }}
       token: ${{ secrets.GH_TOKEN }}
       exclude-repos: "repo1,repo2"
 ```
