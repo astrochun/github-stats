@@ -14,6 +14,15 @@ jobs:
     - name: Get current date
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    - name: Update repository topics
+      shell: bash
+      env:
+        URL: https://api.github.com/repos/${{ github.repository }}/topics
+        TOPICS: '{"names":["github","docker","github-pages","traffic","static-site","python3","stats","github-actions","github-stats-pages"]'
+        AUTH: "Authorization: token ${{ secrets.GH_TOKEN }}"
+      run: |
+        curl -X PUT "$URL" -d "$TOPICS" \
+          -H "Accept: application/vnd.github.mercy-preview+json" -H "$AUTH"
     - name: Build GitHub stats pages
       uses: astrochun/github-stats-pages@latest
       with:
